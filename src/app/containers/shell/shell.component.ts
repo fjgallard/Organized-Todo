@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { ScreenSizeService } from '@core/services/screen-size.service';
 
 @Component({
@@ -11,15 +10,11 @@ export class ShellComponent implements OnInit {
 
   isHandset: boolean = false;
 
-  constructor(private screenSizeService: ScreenSizeService, private router: Router) {
+  constructor(private screenSizeService: ScreenSizeService) {
     this.trackScreenSize();
   }
 
   ngOnInit(): void {
-  }
-
-  navigate() {
-    this.router.navigate(['/todo']);
   }
 
   private trackScreenSize() {

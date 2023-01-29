@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { LandingRoutingModule } from './landing-routing.module';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
-import { ShellModule } from 'src/app/shared/containers/shell/shell.module';
+import { ShellModule } from 'src/app/containers/shell/shell.module';
 
 
 @NgModule({
