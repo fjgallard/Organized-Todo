@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "organized-todo-48b1e": {
+      "hosting": {
+        "organized-todo": [
+          "organized-todo-48b1e"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "organized-todo-48b1e"
+  }
+}

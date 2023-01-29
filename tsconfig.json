@@ -23,8 +23,10 @@
       "dom"
     ],
     "paths": {
+      "@config/*": ["src/config/*"],
       "@core/*": ["src/app/core/*"],
       "@modules/*": ["src/app/modules/*"],
+      "@utils/*": ["src/app/utils/*"]
     }
   },
   "angularCompilerOptions": {
