@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { ScreenSizeService } from '@core/services/screen-size.service';
 
 @Component({
-  selector: 'core-shell',
+  selector: 'shared-shell',
   templateUrl: './shell.component.html',
   styleUrls: ['./shell.component.scss']
 })
