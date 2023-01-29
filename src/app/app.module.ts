@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from '@core/core.module';
 import { TodoModule } from '@modules/todo/todo.module';
 import { LandingModule } from '@modules/landing/landing.module';
-import { ShellModule } from './containers/shell/shell.module';
+import { ShellModule } from './shared/shell/shell.module';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
