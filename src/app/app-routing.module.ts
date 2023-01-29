@@ -4,11 +4,15 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./modules/landing/landing-routing.module').then(m => m.LandingRoutingModule)
+    loadChildren: () => import('./modules/landing/landing.module').then(m => m.LandingModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./modules/login/login.module').then(m => m.LoginModule)
   },
   {
     path: 'todo',
-    loadChildren: () => import('./modules/todo/todo-routing.module').then(m => m.TodoRoutingModule)
+    loadChildren: () => import('./modules/todo/todo.module').then(m => m.TodoModule)
   }
 ];
 

@@ -4,10 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CoreModule } from '@core/core.module';
-import { TodoModule } from '@modules/todo/todo.module';
-import { LandingModule } from '@modules/landing/landing.module';
-import { ShellModule } from './shared/shell/shell.module';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
@@ -23,15 +19,11 @@ import { provideFunctions,getFunctions } from '@angular/fire/functions';
     AppRoutingModule,
     BrowserAnimationsModule,
 
-    CoreModule,
-    LandingModule,
-    TodoModule,
-
-    ShellModule,
-     provideFirebaseApp(() => initializeApp(environment.firebase)),
-     provideAuth(() => getAuth()),
-     provideFirestore(() => getFirestore()),
-     provideFunctions(() => getFunctions())
+    // Firebase
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
+    provideFunctions(() => getFunctions())
   ],
   providers: [],
   bootstrap: [AppComponent]
