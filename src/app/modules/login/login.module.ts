@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 
 import { LoginRoutingModule } from './login-routing.module';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
-import { CoreModule } from '@core/core.module';
 import { ShellModule } from 'src/app/shared/shell/shell.module';
+import { GoogleSigninDirective } from './directives/google-signin.directive';
 
 
 @NgModule({
   declarations: [
-    LoginPageComponent
+    LoginPageComponent,
+    GoogleSigninDirective
   ],
   imports: [
     CommonModule,
