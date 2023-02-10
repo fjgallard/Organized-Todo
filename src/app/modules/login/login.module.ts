@@ -4,18 +4,21 @@ import { CommonModule } from '@angular/common';
 import { LoginRoutingModule } from './login-routing.module';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { ShellModule } from 'src/app/shared/shell/shell.module';
-import { GoogleSigninDirective } from './directives/google-signin.directive';
-
+import { MatButtonModule } from '@angular/material/button';
+import { AuthModule } from '@core/auth/auth.module';
 
 @NgModule({
   declarations: [
-    LoginPageComponent,
-    GoogleSigninDirective
+    LoginPageComponent
   ],
   imports: [
     CommonModule,
     LoginRoutingModule,
-    ShellModule
+
+    AuthModule,
+    ShellModule,
+
+    MatButtonModule,
   ]
 })
 export class LoginModule { }
