@@ -10,7 +10,10 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatDialogModule } from '@angular/material/dialog';
 
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 const materialModules = [
   MatToolbarModule,
@@ -23,7 +26,10 @@ const materialModules = [
   MatCardModule,
   MatFormFieldModule,
   MatInputModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatDialogModule,
+  MatButtonToggleModule,
+  DragDropModule,
 ];
 
 @NgModule({
