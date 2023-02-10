@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthFirebaseService } from '@core/auth/services/auth-firebase.service';
+import { AuthFirebaseService } from '@core/services/auth/auth-firebase.service';
+
 import { Observable } from 'rxjs';
 
 @Component({
