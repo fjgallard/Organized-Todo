@@ -10,6 +10,7 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideFunctions,getFunctions } from '@angular/fire/functions';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
+import { ShellModule } from '@shared/shell/shell.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { FIREBASE_OPTIONS } from '@angular/fire/compat';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    ShellModule,
 
     // Firebase
     provideFirebaseApp(() => initializeApp(environment.firebase)),
