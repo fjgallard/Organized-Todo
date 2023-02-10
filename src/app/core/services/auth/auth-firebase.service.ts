@@ -14,6 +14,10 @@ export class AuthFirebaseService {
     return this.auth.authState;
   }
 
+  get currentUser() {
+    return this.auth.currentUser;
+  }
+
   login() {
     return this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
   }
