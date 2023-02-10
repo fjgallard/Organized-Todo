@@ -1,9 +1,13 @@
 <div *ngIf="!(authState | async)">
   <h1>Login</h1>
 
-  <button mat-raised-button loginGoogleSignin>
-    <img src="/assets/google-logo.svg" /> Login with Google
+  <button class="google-login-btn" mat-raised-button loginGoogleSignin>
+    <img class="google-login-btn__img" src="/assets/images/google-logo.svg" /> Login with Google
   </button>
+
+  <h5>OR</h5>
+
+  <login-email-pass-form></login-email-pass-form>
 </div>
 
 <div *ngIf="authState | async as user" class="logout">

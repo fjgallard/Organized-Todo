@@ -18,6 +18,18 @@ export class AuthFirebaseService {
     return this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
   }
 
+  emailLogin(email: string, password: string) {
+    return this.auth.signInWithEmailAndPassword(email, password);
+  }
+
+  emailSignup(email: string, password: string) {
+    return this.auth.createUserWithEmailAndPassword(email, password);
+  }
+
+  passwordReset(email: string) {
+    return this.auth.sendPasswordResetEmail(email);
+  }
+
   logout() {
     return this.auth.signOut();
   }
