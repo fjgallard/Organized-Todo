@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { TodoRoutingModule } from './todo-routing.module';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { TodoBoardComponent } from './components/todo-board/todo-board.component';
-import { ShellModule } from 'src/app/shared/shell/shell.module';
 
 
 @NgModule({
@@ -15,8 +14,6 @@ import { ShellModule } from 'src/app/shared/shell/shell.module';
   imports: [
     CommonModule,
     TodoRoutingModule,
-
-    ShellModule
   ]
 })
 export class TodoModule { }
