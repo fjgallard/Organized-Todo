@@ -11,7 +11,7 @@ import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
-    ShellComponent
+    ShellComponent,
   ],
   imports: [
     CommonModule,
@@ -27,7 +27,7 @@ import { RouterModule } from '@angular/router';
     MatMenuModule,
   ],
   exports: [
-    ShellComponent
+    ShellComponent,
   ]
 })
 export class CoreModule { }

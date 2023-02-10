@@ -1,5 +1,5 @@
 import { Directive, HostListener } from '@angular/core';
-import { AuthFirebaseService } from '../services/auth-firebase.service';
+import { AuthFirebaseService } from '../../../core/auth/services/auth-firebase.service';
 
 @Directive({
   selector: '[loginGoogleSignin]'
