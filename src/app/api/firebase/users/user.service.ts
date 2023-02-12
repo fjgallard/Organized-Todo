@@ -21,12 +21,12 @@ export class UserService {
     return this.db.doc<User>(`${COLLECTION_NAME}/${id}`).valueChanges({ idField: 'id' });
   }
 
-  update(user: User) {
-    if (!user?.id) {
+  update(id: string, user: User) {
+    if (!id) {
       return;
     }
 
-    return this.db.doc<User>(`${COLLECTION_NAME}/${user.id}`).update({...user});
+    return this.db.doc<User>(`${COLLECTION_NAME}/${id}`).update({...user});
   }
 
   delete(id: string) {
