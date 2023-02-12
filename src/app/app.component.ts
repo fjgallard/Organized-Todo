@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthFacade } from '@core/state/auth.facade';
+import { AuthFacade } from '@modules/login/state/auth.facade';
 
 @Component({
   selector: 'app-root',

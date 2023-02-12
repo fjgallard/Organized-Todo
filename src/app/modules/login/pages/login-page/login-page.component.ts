@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthFirebaseService } from '@core/services/auth/auth-firebase.service';
-import { AuthFacade } from '@core/state/auth.facade';
+import { AuthFacade } from '@modules/login/state/auth.facade';
 
 import { Observable } from 'rxjs';
 
