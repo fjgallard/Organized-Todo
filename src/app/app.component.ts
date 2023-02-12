@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthFacade } from '@core/state/auth.facade';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'organized-todo';
+
+  constructor(private authFacade: AuthFacade) {
+    this.authFacade.loadCurrentUser();
+  }
 }

@@ -23,6 +23,7 @@
       "dom"
     ],
     "paths": {
+      "@api/*": ["src/app/api/*"],
       "@config/*": ["src/config/*"],
       "@core/*": ["src/app/core/*"],
       "@modules/*": ["src/app/modules/*"],

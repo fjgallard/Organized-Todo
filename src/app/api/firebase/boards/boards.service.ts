@@ -20,7 +20,7 @@ export class BoardsService {
   }
 
   read(id: string) {
-    return this.db.doc<Board>(`${COLLECTION_NAME}/${id}`).valueChanges({ idField: id });
+    return this.db.doc<Board>(`${COLLECTION_NAME}/${id}`).valueChanges({ idField: 'id' });
   }
 
   update(board: Board) {
