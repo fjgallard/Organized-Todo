@@ -1,4 +1,4 @@
-<div *ngIf="!(authState | async)">
+<div *ngIf="!(authState | async)?.id">
   <h1>Login</h1>
 
   <button class="google-login-btn" mat-raised-button loginGoogleSignin>
@@ -10,10 +10,13 @@
   <login-email-pass-form></login-email-pass-form>
 </div>
 
-<div *ngIf="authState | async as user" class="logout">
-  <p>
-    Logged in as <strong>{{ user.displayName }}</strong>
-  </p>
+<ng-container *ngIf="(authState | async) as user" class="logout">
+  <div *ngIf="user?.id" class="logout">
+    <p>
+      Logged in as <strong>{{ user?.displayName }}</strong>
+    </p>
 
-  <button mat-stroked-button loginGoogleSignout>Logout</button>
-</div>
+    <button mat-stroked-button loginGoogleSignout>Logout</button>
+  </div>
+
+</ng-container>

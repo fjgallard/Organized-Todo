@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthFirebaseService } from '@core/services/auth/auth-firebase.service';
 import { EmailPassFormType } from '@modules/login/interfaces/email-pass-form-types.enum';
+import { AuthFacade } from '@modules/login/state/auth.facade';
 
 @Component({
   selector: 'login-email-pass-form',
@@ -21,10 +21,7 @@ export class EmailPassFormComponent implements OnInit {
   readonly SIGNUPTYPE = EmailPassFormType.SIGNUP;
   readonly RESETTYPE = EmailPassFormType.RESET;
 
-  constructor(
-    private authFireService: AuthFirebaseService,
-    private fb: FormBuilder
-  ) {
+  constructor(private fb: FormBuilder, private authFacade: AuthFacade) {
     this.form = this.buildForm();
   }
 
@@ -74,13 +71,13 @@ export class EmailPassFormComponent implements OnInit {
 
     try {
       if (this.isLogin) {
-        await this.authFireService.emailLogin(email, password);
+        await this.authFacade.emailLogin(email, password);
       }
       if (this.isSignup) {
-        await this.authFireService.emailSignup(email, password);
+        await this.authFacade.emailSignup(email, password);
       }
       if (this.isPasswordReset) {
-        await this.authFireService.passwordReset(email);
+        await this.authFacade.passwordReset(email);
         this.serverMessage = 'Check your email';
       }
     } catch (err) {

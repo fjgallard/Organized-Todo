@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
-import { AuthFirebaseService } from '@core/services/auth/auth-firebase.service';
+import { AuthService } from '@core/services/auth/auth.service';
 import { SnackService } from '@core/services/snack/snack.service';
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,22 +10,23 @@ import { SnackService } from '@core/services/snack/snack.service';
 export class AuthGuard implements CanActivate {
 
   constructor(
-    private authFirebaseService: AuthFirebaseService,
+    private authService: AuthService,
     private snackService: SnackService
   ) {}
 
-  async canActivate(
+  canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ) {
-    const user = await this.authFirebaseService.currentUser;
-    const isLoggedIn = !!user;
+    return this.authService.isLoggedIn.pipe(
+      map((isLoggedIn: boolean) => {
+        if (!isLoggedIn) {
+          this.snackService.authError();
+        }
 
-    if (!isLoggedIn) {
-      this.snackService.authError();
-    }
-
-    return isLoggedIn;
+        return isLoggedIn;
+      })
+    );
   }
 
 }

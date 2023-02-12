@@ -1,15 +1,15 @@
 import { Directive, HostListener } from '@angular/core';
-import { AuthFirebaseService } from '@core/services/auth/auth-firebase.service';
+import { AuthFacade } from '../state/auth.facade';
 
 @Directive({
   selector: '[loginGoogleSignout]'
 })
 export class GoogleSignoutDirective {
 
-  constructor(private authFire: AuthFirebaseService) { }
+  constructor(private authFacade: AuthFacade) { }
 
   @HostListener('click')
   onClick() {
-    this.authFire.logout();
+    this.authFacade.logout();
   }
 }

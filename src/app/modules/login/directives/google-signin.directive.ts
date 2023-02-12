@@ -1,17 +1,16 @@
 import { Directive, HostListener } from '@angular/core';
-import { AuthFirebaseService } from '@core/services/auth/auth-firebase.service';
+import { AuthFacade } from '../state/auth.facade';
 
 @Directive({
   selector: '[loginGoogleSignin]'
 })
 export class GoogleSigninDirective {
 
-  constructor(private authFire: AuthFirebaseService) { }
+  constructor(private authFacade: AuthFacade) { }
 
   @HostListener('click')
   onClick() {
-    console.log('haha');
-    this.authFire.login().then(res => console.log(res));
+    this.authFacade.googleLogin();
   }
 
 }

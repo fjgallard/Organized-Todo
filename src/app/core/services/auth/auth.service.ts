@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AuthFirebaseService } from '@api/firebase/auth/auth-firebase.service';
 import { UserService } from '@api/firebase/users/user.service';
-import { map, of, switchMap } from 'rxjs';
+import { map, Observable, of, switchMap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,8 @@ export class AuthService {
 
   constructor(
     private authFire: AuthFirebaseService,
-    private userService: UserService) { }
+    private userService: UserService
+  ) { }
 
   get currentUser() {
     return this.authFire.authState.pipe(
@@ -29,6 +30,10 @@ export class AuthService {
         }
       })
     );
+  }
+
+  get isLoggedIn(): Observable<boolean> {
+    return this.currentUser.pipe(map(user => !!user?.id));
   }
 
   googleLogin() {
