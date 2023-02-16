@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ScreenSizeService } from '@utils/services/screen-size.service';
+import { ScreenSizeService } from '@core/services/screen-size/screen-size.service';
 
 @Component({
   selector: 'shared-shell',
