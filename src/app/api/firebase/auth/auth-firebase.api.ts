@@ -6,7 +6,7 @@ import firebase from 'firebase/compat/app';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthFirebaseService {
+export class AuthApi {
 
   constructor(private auth: AngularFireAuth) { }
 

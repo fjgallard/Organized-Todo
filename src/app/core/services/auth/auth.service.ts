@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AuthFirebaseService } from '@api/firebase/auth/auth-firebase.api';
+import { AuthApi } from '@api/firebase/auth/auth-firebase.api';
 import { UserService } from '@api/firebase/users/user.api';
 import { map, Observable, of, switchMap } from 'rxjs';
 
@@ -9,7 +9,7 @@ import { map, Observable, of, switchMap } from 'rxjs';
 export class AuthService {
 
   constructor(
-    private authFire: AuthFirebaseService,
+    private authFire: AuthApi,
     private userService: UserService
   ) { }
 
