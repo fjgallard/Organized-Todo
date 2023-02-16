@@ -14,6 +14,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialogModule } from '@angular/material/dialog';
 
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { DeleteButtonComponent } from './components/delete-button/delete-button.component';
 
 const materialModules = [
   MatToolbarModule,
@@ -32,13 +33,21 @@ const materialModules = [
   DragDropModule,
 ];
 
+const components = [
+  DeleteButtonComponent,
+];
+
 @NgModule({
-  declarations: [],
+  declarations: [
+    ...components,
+  ],
   imports: [
-    CommonModule
+    CommonModule,
+    ...materialModules
   ],
   exports: [
-    ...materialModules
+    ...materialModules,
+    ...components,
   ]
 })
 export class SharedModule { }

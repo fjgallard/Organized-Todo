@@ -3,17 +3,23 @@ import { CommonModule } from '@angular/common';
 
 import { TodoRoutingModule } from './todo-routing.module';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { TodoBoardComponent } from './components/todo-board/todo-board.component';
 import { SharedModule } from '@shared/shared.module';
+import { BoardComponent } from './components/board/board.component';
+import { TaskDialogComponent } from './components/task-dialog/task-dialog.component';
+import { FormsModule } from '@angular/forms';
+import { BoardDialogComponent } from './components/board-dialog/board-dialog.component';
 
 
 @NgModule({
   declarations: [
     DashboardComponent,
-    TodoBoardComponent
+    BoardComponent,
+    TaskDialogComponent,
+    BoardDialogComponent,
   ],
   imports: [
     CommonModule,
+    FormsModule,
     TodoRoutingModule,
     SharedModule,
   ]

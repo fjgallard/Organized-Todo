@@ -24,8 +24,8 @@ export class BoardService {
     return this.boardsApi.create(board, user?.uid);
   }
 
-  async getUserBoards() {
-    this.authApi.authState.pipe(
+  getUserBoards() {
+    return this.authApi.authState.pipe(
       switchMap(user => {
         if (!user?.uid) {
           console.error('Not logged in!');

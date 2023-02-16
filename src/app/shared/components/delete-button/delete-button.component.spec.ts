@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TodoBoardComponent } from './todo-board.component';
+import { DeleteButtonComponent } from './delete-button.component';
 
-describe('TodoBoardComponent', () => {
-  let component: TodoBoardComponent;
-  let fixture: ComponentFixture<TodoBoardComponent>;
+describe('DeleteButtonComponent', () => {
+  let component: DeleteButtonComponent;
+  let fixture: ComponentFixture<DeleteButtonComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TodoBoardComponent ]
+      declarations: [ DeleteButtonComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TodoBoardComponent);
+    fixture = TestBed.createComponent(DeleteButtonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
