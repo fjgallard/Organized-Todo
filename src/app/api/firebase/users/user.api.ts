@@ -7,7 +7,7 @@ const COLLECTION_NAME = 'users';
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class UserApi {
 
   constructor(private db: AngularFirestore) { }
 

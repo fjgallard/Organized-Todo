@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AuthApi } from '@api/firebase/auth/auth-firebase.api';
-import { UserService } from '@api/firebase/users/user.api';
+import { UserApi } from '@api/firebase/users/user.api';
 import { map, Observable, of, switchMap } from 'rxjs';
 
 @Injectable({
@@ -10,7 +10,7 @@ export class AuthService {
 
   constructor(
     private authFire: AuthApi,
-    private userService: UserService
+    private userService: UserApi
   ) { }
 
   get currentUser() {

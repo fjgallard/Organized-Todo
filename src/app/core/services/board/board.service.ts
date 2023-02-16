@@ -1,20 +1,41 @@
 import { Injectable } from '@angular/core';
-import { Board, Task } from '@api/firebase/boards/board.interfaces';
+import { AuthApi } from '@api/firebase/auth/auth-firebase.api';
 import { BoardsApi } from '@api/firebase/boards/boards.api';
+import { of, switchMap } from 'rxjs';
+import { Board, Task } from './board.interfaces';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BoardService {
 
-  constructor(private boardsApi: BoardsApi) { }
+  constructor(
+    private authApi: AuthApi,
+    private boardsApi: BoardsApi
+  ) { }
 
-  createBoard(board: Board, uid: string) {
-    return this.boardsApi.create(board, uid);
+  async createBoard(board: Board) {
+    const user = await this.authApi.currentUser;
+    if (!user?.uid) {
+      console.error('Not logged in!');
+      return;
+    }
+
+    return this.boardsApi.create(board, user?.uid);
   }
 
-  getUserBoards(uid: string) {
-    return this.boardsApi.getByUser(uid);
+  async getUserBoards() {
+    this.authApi.authState.pipe(
+      switchMap(user => {
+        if (!user?.uid) {
+          console.error('Not logged in!');
+          return of(undefined);
+        }
+
+        return this.boardsApi.getByUser(user?.uid);
+      })
+    )
+
   }
 
   sortBoards(boards: Board[]) {
