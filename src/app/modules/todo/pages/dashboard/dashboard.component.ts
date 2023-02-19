@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Board } from '@core/services/board/board.interfaces';
 import { BoardDialogComponent } from '@modules/todo/components/board-dialog/board-dialog.component';
 import { BoardFacade } from '@modules/todo/state/board.facade';
+import { SubSink } from 'subsink';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,27 +15,25 @@ export class DashboardComponent implements OnInit {
 
   boards: Board[] = [];
 
+  private subs = new SubSink();
+
   constructor(
     private boardFacade: BoardFacade,
     private dialog: MatDialog
   ) {}
 
   ngOnInit() {
-    // Add subsink later
-    this.boardFacade
-      .getUserBoards()
-      .subscribe(boards => {
-        console.log(boards);
-        if (!boards) {
-          return;
-        }
+    this.subs.sink = this.boardFacade.getUserBoards().subscribe(boards => {
+      if (!boards) {
+        return;
+      }
 
-        this.boards = boards;
-      });
+      this.boards = boards;
+    });
   }
 
   ngOnDestroy() {
-    // this.sub.unsubscribe();
+    this.subs.unsubscribe();
   }
 
   drop(event: CdkDragDrop<string[]>) {
