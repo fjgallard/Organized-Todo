@@ -11,12 +11,13 @@ import { Observable } from 'rxjs';
 export class LoginPageComponent implements OnInit {
 
   authState: Observable<any>;
+
   constructor(private authFacade: AuthFacade) {
+    this.authFacade.loadCurrentUser();
     this.authState = this.authFacade.currentUser$;
   }
 
   ngOnInit(): void {
-    this.authState.subscribe(res => console.log(res));
   }
 
 }

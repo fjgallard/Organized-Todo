@@ -17,6 +17,12 @@ export class UserApi {
     });
   }
 
+  set(user: firebase.default.User) {
+    return this.db.collection<User>(COLLECTION_NAME)
+      .doc(user?.uid)
+      .set({ email: user?.email || '', displayName: 'Default Name' });
+  }
+
   read(id: string) {
     return this.db.doc<User>(`${COLLECTION_NAME}/${id}`).valueChanges({ idField: 'id' });
   }

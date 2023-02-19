@@ -10,7 +10,7 @@ export class AuthService {
 
   constructor(
     private authFire: AuthApi,
-    private userService: UserApi
+    private userApi: UserApi
   ) { }
 
   get currentUser() {
@@ -20,7 +20,7 @@ export class AuthService {
           return of(undefined);
         }
 
-        return this.userService.read(user?.uid);
+        return this.userApi.read(user?.uid);
       }),
       map(user => {
         return {
@@ -37,7 +37,13 @@ export class AuthService {
   }
 
   googleLogin() {
-    return this.authFire.googleLogin();
+    this.authFire.googleLogin().then(res => {
+      if (!res?.user) {
+        return;
+      }
+
+      this.userApi.set(res.user);
+    });
   }
 
   emailLogin(email: string, password: string) {
