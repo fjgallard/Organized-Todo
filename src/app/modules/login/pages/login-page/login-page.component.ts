@@ -11,14 +11,31 @@ import { Observable } from 'rxjs';
 })
 export class LoginPageComponent {
 
+  /**
+   * Track currently logged in user or lack thereof
+   */
   authState: Observable<any>;
+
+  /**
+   * If an action is currently in progress
+   */
   isLoading: boolean = false;
-  formType: EmailPassFormType = EmailPassFormType.SIGNUP;
+
+  /**
+   * Track if the user is currently in login, signup, or password reset mode
+   */
+  formType: EmailPassFormType;
+
+  /**
+   * Loads error message (unimplemented)
+   */
   serverMessage: string = '';
 
   constructor(private authFacade: AuthFacade) {
     this.authFacade.loadCurrentUser();
     this.authState = this.authFacade.currentUser$;
+
+    this.formType = EmailPassFormType.SIGNUP;
   }
 
   updateFormType(formType: EmailPassFormType) {
@@ -31,11 +48,7 @@ export class LoginPageComponent {
     const { email, password } = formValue;
     const authFunction = this.authFacade.authFunction(this.formType);
 
-    try {
-      return await authFunction(email, password);
-    } catch (err) {
-      this.serverMessage = err as string;
-    }
+    await authFunction(email, password);
 
     this.isLoading = false;
   }

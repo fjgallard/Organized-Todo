@@ -2,21 +2,21 @@
   <div *ngIf="isSignup">
     <h3>Create Account</h3>
 
-    <button mat-stroked-button (click)="changeType(LOGINTYPE)">
+    <button mat-stroked-button (click)="emitChangeType(LOGINTYPE)">
       Returning user?
     </button>
   </div>
 
   <div *ngIf="isLogin">
     <h3>Sign In</h3>
-    <button size="small" mat-stroked-button (click)="changeType(SIGNUPTYPE)">
+    <button size="small" mat-stroked-button (click)="emitChangeType(SIGNUPTYPE)">
       New user?
     </button>
   </div>
 
   <div *ngIf="isPasswordReset">
     <h3>Reset Password</h3>
-    <button size="small" mat-button (click)="changeType(LOGINTYPE)">Back</button>
+    <button size="small" mat-button (click)="emitChangeType(LOGINTYPE)">Back</button>
   </div>
 
   <form [formGroup]="form" (ngSubmit)="onSubmitBtnPressed()">
@@ -86,7 +86,7 @@
   <button
     mat-button
     *ngIf="isLogin && !isPasswordReset"
-    (click)="changeType(RESETTYPE)">
+    (click)="emitChangeType(RESETTYPE)">
     Forgot password?
   </button>
 </mat-card>

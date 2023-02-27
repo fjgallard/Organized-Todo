@@ -62,7 +62,7 @@ export class EmailPassFormComponent {
     return this.type !== EmailPassFormType.SIGNUP || this.passwordField?.value === this.passwordConfirmField?.value;
   }
 
-  changeType(val: EmailPassFormType) {
+  emitChangeType(val: EmailPassFormType) {
     this.formTypeChanged.emit(val);
   }
 
