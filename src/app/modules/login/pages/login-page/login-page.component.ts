@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { User } from '@core/services/auth/auth.interfaces';
 import { EmailPassFormType } from '@modules/login/interfaces/email-pass-form-types.enum';
 import { AuthFacade } from '@modules/login/state/auth.facade';
 
@@ -14,7 +15,7 @@ export class LoginPageComponent {
   /**
    * Track currently logged in user or lack thereof
    */
-  authState: Observable<any>;
+  authState: Observable<User>;
 
   /**
    * If an action is currently in progress

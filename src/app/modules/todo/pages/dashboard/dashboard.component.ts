@@ -41,6 +41,9 @@ export class DashboardComponent implements OnInit {
     this.boardFacade.sortBoards(this.boards);
   }
 
+  /**
+   * TODO: Create DialogService for this
+   */
   openBoardDialog(): void {
     const dialogRef = this.dialog.open(BoardDialogComponent, {
       width: '400px',
@@ -48,7 +51,6 @@ export class DashboardComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
       if (result) {
         this.boardFacade.createBoard({
           title: result,
