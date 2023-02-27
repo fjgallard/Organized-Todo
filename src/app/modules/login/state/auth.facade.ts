@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { User } from "@core/services/auth/auth.interfaces";
 import { AuthService } from "@core/services/auth/auth.service";
 import { Observable, Subject } from "rxjs";
+import { EmailPassFormType } from "../interfaces/email-pass-form-types.enum";
 
 @Injectable({
   providedIn: 'root'
@@ -47,6 +48,16 @@ export class AuthFacade {
 
   logout() {
     return this.authService.logout();
+  }
+
+  authFunction(type: EmailPassFormType) {
+    const loginObject = {
+      0: this.emailLogin,
+      1: this.emailSignup,
+      2: this.passwordReset
+    };
+
+    return loginObject[type];
   }
 
 }

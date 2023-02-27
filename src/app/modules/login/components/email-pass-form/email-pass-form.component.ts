@@ -1,31 +1,38 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmailPassFormType } from '@modules/login/interfaces/email-pass-form-types.enum';
-import { AuthFacade } from '@modules/login/state/auth.facade';
 
 @Component({
   selector: 'login-email-pass-form',
   templateUrl: './email-pass-form.component.html',
   styleUrls: ['./email-pass-form.component.scss']
 })
-export class EmailPassFormComponent implements OnInit {
+export class EmailPassFormComponent {
+
+  @Output()
+  formTypeChanged = new EventEmitter<EmailPassFormType>();
+
+  @Output()
+  formSubmitted = new EventEmitter<{ email: string, password: string }>();
+
+  @Input()
+  serverMessage: string = '';
+
+  @Input()
+  type: EmailPassFormType = EmailPassFormType.SIGNUP;
+
+  @Input()
+  isLoading: boolean = false;
 
   form: FormGroup;
-
-  type: EmailPassFormType = EmailPassFormType.SIGNUP;
-  isLoading = false;
-
-  serverMessage: string = '';
 
   readonly LOGINTYPE = EmailPassFormType.LOGIN;
   readonly SIGNUPTYPE = EmailPassFormType.SIGNUP;
   readonly RESETTYPE = EmailPassFormType.RESET;
 
-  constructor(private fb: FormBuilder, private authFacade: AuthFacade) {
+  constructor(private fb: FormBuilder) {
     this.form = this.buildForm();
   }
-
-  ngOnInit() {}
 
   get isLogin() {
     return this.type === EmailPassFormType.LOGIN;
@@ -39,62 +46,38 @@ export class EmailPassFormComponent implements OnInit {
     return this.type === EmailPassFormType.RESET;
   }
 
-  get email() {
+  get emailField() {
     return this.form.get('email');
   }
 
-  get password() {
+  get passwordField() {
     return this.form.get('password');
   }
 
-  get passwordConfirm() {
+  get passwordConfirmField() {
     return this.form.get('passwordConfirm');
   }
 
   get passwordDoesMatch() {
-    if (this.type !== EmailPassFormType.SIGNUP) {
-      return true;
-    } else {
-      return this.password?.value === this.passwordConfirm?.value;
-    }
+    return this.type !== EmailPassFormType.SIGNUP || this.passwordField?.value === this.passwordConfirmField?.value;
   }
 
   changeType(val: EmailPassFormType) {
-    this.type = val;
+    this.formTypeChanged.emit(val);
   }
 
-  async onSubmit() {
-    this.isLoading = true;
+  async onSubmitBtnPressed() {
+    const email = this.emailField?.value;
+    const password = this.passwordField?.value;
 
-    const email = this.email?.value;
-    const password = this.password?.value;
-
-    try {
-      if (this.isLogin) {
-        await this.authFacade.emailLogin(email, password);
-      }
-      if (this.isSignup) {
-        await this.authFacade.emailSignup(email, password);
-      }
-      if (this.isPasswordReset) {
-        await this.authFacade.passwordReset(email);
-        this.serverMessage = 'Check your email';
-      }
-    } catch (err) {
-      this.serverMessage = err as string;
-    }
-
-    this.isLoading = false;
+    this.formSubmitted.next({ email, password });
   }
 
   private buildForm() {
     return this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: [
-        '',
-        [Validators.minLength(6), Validators.required]
-      ],
-      passwordConfirm: ['', []]
+      email: [ '', [Validators.required, Validators.email] ],
+      password: [ '', [Validators.minLength(6), Validators.required] ],
+      passwordConfirm: [' ', [] ]
     });
   }
 

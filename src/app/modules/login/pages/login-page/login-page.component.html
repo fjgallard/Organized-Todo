@@ -7,7 +7,13 @@
 
   <h5>OR</h5>
 
-  <login-email-pass-form></login-email-pass-form>
+  <login-email-pass-form
+    [isLoading]="isLoading"
+    [serverMessage]="serverMessage"
+    [type]="formType"
+    (formTypeChanged)="updateFormType($event)"
+    (formSubmitted)="submitForm($event)">
+  </login-email-pass-form>
 </div>
 
 <ng-container *ngIf="(authState | async) as user" class="logout">
